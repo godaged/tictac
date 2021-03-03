@@ -9,7 +9,7 @@ First you need to select to who do you want to play against; another player(0) o
 
 ## Play against another Player  
 Player 1 has to chose his marker('X' or 'O'). If player 1 chose 'O', he gets second move.
-if anyone makes a row will win and it will notify as 'X' or 'O' won the game and then ask whether want to continue.
+If anyone makes a row will win and it will notify as 'X' or 'O' won the game, otherwise displays no one won the game and then ask whether want to continue.
 
 ## Play against PC  
 By default, player gets marker 'X' and gets first move. PC moves its movement based on player's move.
