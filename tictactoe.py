@@ -6,13 +6,15 @@ leftPadding = " " * 5
 moves = range(1,10)
 
 def setUpList():
-    # initialize the list
+    # Declare and initialize the list.
     emptyList = []
     for _ in range(9):
+        # Populate list with empty string "".
         emptyList.append("")
     return emptyList
 
 def isBoardEmpty(board, index):
+    # Check cell of the board is empty.
     # return " " if cell is empty else return cell value.
     cellValue = ""
     if len(board[index]) > 0:
@@ -21,40 +23,52 @@ def isBoardEmpty(board, index):
         cellValue = " "
     return cellValue
 
+def printGameTitle():
+    print()
+    print(" ###### ##  ####   ######   ###    ####   ######   ###    ######     1 | 2  | 3   ") 
+    print("   ##   ## ##        ##    ## ##  ##        ##   ##   ##  ##       ----|----|---- ") 
+    print("   ##   ## ##        ##   ####### ##        ##  ##     ## ####       4 | 5  | 6   ") 
+    print("   ##   ## ##        ##   ##   ## ##        ##   ##   ##  ##       ----|----|---- ")    
+    print("   ##   ##  ####     ##   ##   ##  ####     ##     ###    ######     7 | 8  | 9   ") 
+    print(" ===============================================================>    By Dan God   ") 
+    print()
+
 def selectTurnAndMarker():
-    # Select the marker and first turn of your choice
-    #os.system('cls ||clear')
-    whoFirst = ["Player", "PC"]
-    markers = ['X', 'O']
+    # Select the marker and first turn of player 1's choice
+    os.system('cls ||clear')
+    playChoice = ["Player", "PC"]
+    markerChoice = ['X', 'O']
     marker = ''
     print()
-    print(leftPadding * 4 , "Tic Tac Toe")
-    print(leftPadding * 4 , "===========")
+    printGameTitle()
 
+    # Initialize with -1
     pcOrPlayer = -1 
     while pcOrPlayer not in (0, 1):
         answer = input(leftPadding + " Play against PC or another player(Player = 0, pc = 1) ? ")
         if answer in ("0", "1"):
             pcOrPlayer = int(answer)
+    # Selected value of play against PC or another player
+    playAgainst = playChoice[pcOrPlayer]
 
-    playAgainst = whoFirst[pcOrPlayer]
+    if playAgainst == "Player":
+        # Select the marker, if only play against another player
+        while marker not in markerChoice:
+            marker = input(leftPadding + " Player 1, Select your marker('X' goes first) ('X'/'O') : ").upper()
+            if marker not in markerChoice:
+                marker = ""
+    else:
+        # Player goes first withplaying against PC and marker is 'X'
+        print(leftPadding + " Player goes first with 'X'")
+        marker = "X"
 
-    # Select the marker
-    while marker not in markers:
-        marker = input(leftPadding + " Player 1, Select your marker('X' goes first) ('X'/'O') : ").upper()
-        if marker not in markers:
-            marker = ""
-    
     return playAgainst, marker
 
 def printBoard(board):
     # prints the board.
-    #os.system('cls ||clear')
+    os.system('cls ||clear')
     row = ''
-    print()
-    print(leftPadding, "Tic Tac Toe")
-    print(leftPadding, "===========")
-
+    printGameTitle()
     for index in moves:
         # start index with 1.
         if index%3 == 0:
@@ -73,7 +87,7 @@ def printBoard(board):
 
 def getLocation(player):
     # get only integer
-    question = leftPadding + " '{}' turn, What place do you want to mark (1-9)? ".format(player)
+    question = "\n" + leftPadding + " '{}' turn, What place do you want to mark (1-9)? ".format(player)
     move = input(question)
     while not move.isnumeric():
         print(leftPadding + " '{}' is not a valid entry".format(move.upper()) + "\n" + leftPadding + " Enter number between 1 and 9")
@@ -95,32 +109,8 @@ def playerMove(board, player):
         else:
             print(leftPadding + " {} th place is already taken.".format(move))
 
-def pcMove(board, pc, player, index, turn):
-    # PC moves
-    i = index + 1
-    corners = (0, 2, 6, 8)
-    if board.count("") == 9:
-        if(turn == "PC"):
-            board[4] = pc
-    elif board.count("") == 8:
-        for i in corners:
-            if board[4] == "":
-                board[4] = pc
-            elif board[corners[i]] == "":
-                board[corners[i]] = pc
-                break
-    elif board.count("") == 7:
-        for i in corners:
-            if board[4] == "":
-                board[4] = pc
-            elif board[corners[i]] == "":
-                board[corners[i]] = pc
-                break
-    elif board.count("") == 6:
-        pass
-    # TBD
-
 def setMessage(against, marker, pc):
+    # This sets the Player marker and PC marker
     message = "\n" + leftPadding + " Player 1 = " + marker
     if against == "PC":
         message += '\n' + leftPadding + " PC = " + pc
@@ -128,33 +118,79 @@ def setMessage(against, marker, pc):
         message += '\n' + leftPadding + " Player 2 = " + pc
     return message
 
-def CheckWin(board, sign):
+def checkWin(board, sign):
+    # Check who won or no one won.
     message = ""
     if board.count("") <= 4:
-        b = board
         win = leftPadding + " {} won the game".format(sign)
-        if b[0] == b[1] == b[2] == sign:
+        if board[0] == board[1] == board[2] == sign:
             message = win
-        elif b[3] == b[4] == b[5] == sign:
+        elif board[3] == board[4] == board[5] == sign:
             message = win
-        elif b[6] == b[7] == b[8] == sign:
+        elif board[6] == board[7] == board[8] == sign:
             message = win
-        elif b[0] == b[3] == b[6] == sign:
+        elif board[0] == board[3] == board[6] == sign:
             message = win
-        elif b[1] == b[4] == b[7] == sign:
+        elif board[1] == board[4] == board[7] == sign:
             message = win
-        elif b[2] == b[5] == b[8] == sign:
+        elif board[2] == board[5] == board[8] == sign:
             message = win
-        elif b[0] == b[4] == b[8] == sign:
+        elif board[0] == board[4] == board[8] == sign:
             message = win
-        elif b[2] == b[4] == b[6] == sign:
+        elif board[2] == board[4] == board[6] == sign:
             message = win
-        elif b.count("") == 0:
+        elif board.count("") == 0:
             message =  leftPadding + " No one won the game"
     return message
 
+def pcMove(board, pc, player):
+    # This decides how PC moves against player
+    # PC's preffered move order
+    cellNumber = (4, 0, 2, 6, 8, 1, 3, 5, 7)
+    block = success = ""
+    if board.count("") == 8:
+        # PC's first move
+        for i in cellNumber:
+            if board[i] == "":
+                board[i] = pc
+                break
+    elif board.count("") <= 6:
+        # PC's 2nd and subsequent moves to win or block
+        success = blockOrWin(board, pc, "O")
+        if not success:
+            block = blockOrWin(board, pc, "X")
+    if not success and not block and board.count("") <= 6:
+        # PC's 2nd and subsequent moves in prefered order
+        for i in cellNumber:
+            if board[i] == "":
+                board[i] = pc
+                break
+
+def blockOrWin(board, pc, marker):
+    # This will decide which cell, PC should be marked.
+    # loop through each touple to decide the prefered cell to move.
+    blockers = ((0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6))
+    found = False
+    for blocker in blockers:
+        found = False
+        x = blocker[0]
+        y = blocker[1]
+        z = blocker[2]
+        if board[x] == board[y] == marker and board[z] == "":
+            board[z] = pc
+            found = True
+        elif board[x] == board[z] == marker and board[y] == "":
+            board[y] = pc
+            found = True
+        elif board[y] == board[z] == marker and board[x] == "":
+            board[x] = pc
+            found = True
+        if found == True:
+            return found
+    return found
+
 def playGame(board):
-    # plays the game.
+    # This will play the game.
     against, marker = selectTurnAndMarker()
     pc = 'O' if marker == 'X' else 'X'
 
@@ -169,23 +205,28 @@ def playGame(board):
     print(message)
 
     # Start the game
-    for i in range(9):
+    for _ in range(9):
         
         # Play againt PC (Need to fix this if)
         if against == "PC" and board.count("") < 9:
-            pcMove(board, pc, marker, i, against)
+            pcMove(board, pc, marker)
             printBoard(board)
             print(message)
+            win = checkWin(board, pc)
+            if "won the game" in win:
+                print("\n" + win + "\n")
+                break
 
         playerMove(board, turn)
         printBoard(board)
         print(message)
-        isWin = CheckWin(board, turn)
-        if len(isWin) > 1:
-            print(isWin)
+        win = checkWin(board, turn)
+        if "won the game" in win:
+            print("\n" + win + "\n")
             break
 
-        turn = "O" if turn == "X" else "X"
+        if against == "Player":
+            turn = "O" if turn == "X" else "X"
 
         if board.count("") == 0:
             break
@@ -196,6 +237,3 @@ if __name__ == "__main__":
         board =  setUpList()
         playGame(board)
         cont = input(leftPadding + " Do you want to play another game(y = yes, n = no) ? ")
-
-
-
