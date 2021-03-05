@@ -1,7 +1,7 @@
 # Tic Tac Toe
 ## Description  
 Tic Tac Toe Console Game in Python. Can be played against the PC or another player.
-This require package os and its used only to clear the screen.
+This require package os and datetime.
 
 ## How to play  
 Always 'X' goes first.
@@ -15,3 +15,5 @@ If anyone makes a row will win and it will notify as 'X' or 'O' won the game, ot
 By default, player gets marker 'X' and gets first move. PC moves its movement based on player's move.
 PC will always try to block player win or else PC tries to win.
 
+## Loggin
+This logs the board for each movement into a text file.
