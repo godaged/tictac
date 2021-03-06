@@ -1,5 +1,7 @@
 import os
 import datetime
+import title
+import log
 
 class TicTacToe:
     def __init__(self):
@@ -26,21 +28,6 @@ class TicTacToe:
             cellValue = " "
         return cellValue
 
-    def printGameTitle(self):
-        print()
-        print("    ______  @                                                                    ") 
-        print("   /   |  \       ___   __|__   ___      __   __|__   __     __      1 | 2  | 3  ") 
-        print("       |    |    /   \    |    /   |    /  \    |    /\ \   /  \   ----|----|----") 
-        print("       |    |   |         |   |    |   |        |   |  \ | |   /     4 | 5  | 6  ")    
-        print("       |    |   |         |   |    |   |        |   |   \|_|__/    ----|----|----") 
-        print("       | __/ \_/ \___/   /\__/ \__/ \_/ \__/   / \_/ \__/   \__/     7 | 8  | 9  ")
-        print("     ============================================================>   By Dan God  ") 
-        print()
-
-    def WriteToFile(self, text):
-        with open("log.txt", "a") as logFile:
-            logFile.write(text + "\n")
-
     def selectTurnAndMarker(self):
         # Select the marker and first turn of player 1's choice
         os.system('cls ||clear')
@@ -48,7 +35,8 @@ class TicTacToe:
         markerChoice = ['X', 'O']
         marker = ''
         print()
-        self.printGameTitle()
+        #self.printGameTitle()
+        title.printGameTitleOne()
 
         # Initialize with -1
         pcOrPlayer = -1 
@@ -76,7 +64,8 @@ class TicTacToe:
         # prints the board.
         os.system('cls ||clear')
         row = ''
-        self.printGameTitle()
+        # self.printGameTitle()
+        title.printGameTitleOne()
         for index in self.moves:
             # start index with 1.
             if index%3 == 0:
@@ -113,7 +102,6 @@ class TicTacToe:
                 move = 1
             elif self.isBoardEmpty(board, move-1) == " ":
                 board[move-1] = player
-                #self.WriteToFile(', '.join(board))
                 break
             else:
                 print(self.leftPadding + " {} th place is already taken.".format(move))
@@ -209,7 +197,7 @@ class TicTacToe:
         # Set message
         message = self.setMessage(against, marker, pc)
         now = datetime.datetime.now()
-        self.WriteToFile("\n" + now.strftime("%m/%d/%Y %H:%M:%S")  + "\n" + message.strip())
+        log.WriteToFile("\n" + now.strftime("%m/%d/%Y %H:%M:%S")  + "\n" + message.strip())
         
         # Print empty board
         self.printBoard(board)
@@ -222,21 +210,21 @@ class TicTacToe:
             if against == "PC" and board.count("") < 9:
                 self.pcMove(board, pc, marker)
                 self.printBoard(board)
-                self.WriteToFile(', '.join(board))
+                log.WriteToFile(', '.join(board))
                 print(message)
                 win = self.checkWin(board, pc)
                 if "won the game" in win:
-                    self.WriteToFile(win.strip())
+                    log.WriteToFile(win.strip())
                     print("\n" + win + "\n")
                     break
 
             self.playerMove(board, turn)
             self.printBoard(board)
-            self.WriteToFile(', '.join(board))
+            log.WriteToFile(', '.join(board))
             print(message)
             win = self.checkWin(board, turn)
             if "won the game" in win:
-                self.WriteToFile(win.strip())
+                log.WriteToFile(win.strip())
                 print("\n" + win + "\n")
                 break
 

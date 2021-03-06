@@ -1,31 +1,23 @@
 
-03/04/2021 20:35:39
+03/05/2021 18:20:33
 Player 1 = X
       PC = O
-, , , , , , , , X
-, , , , O, , , , X
-X, , , , O, , , , X
-X, , O, , O, , , , X
-X, , O, , O, , X, , X
-X, , O, , O, , X, O, X
-X, , O, X, O, , X, O, X
-X won the game
 
-03/04/2021 20:38:42
+03/05/2021 18:22:35
 Player 1 = X
       PC = O
-, , , , X, , , , 
-O, , , , X, , , , 
-O, , , , X, , , , X
-O, , O, , X, , , , X
-O, X, O, , X, , , , X
-O, X, O, , X, , , O, X
-O, X, O, , X, , X, O, X
-O, X, O, O, X, , X, O, X
-O, X, O, O, X, X, X, O, X
+X, , , , , , , , 
+X, , , , O, , , , 
+X, X, , , O, , , , 
+X, X, O, , O, , , , 
+X, X, O, , O, , X, , 
+X, X, O, O, O, , X, , 
+X, X, O, O, O, X, X, , 
+X, X, O, O, O, X, X, , O
+X, X, O, O, O, X, X, X, O
 No one won the game
 
-03/04/2021 20:40:43
+03/05/2021 18:44:37
 Player 1 = X
       PC = O
 X, , , , , , , , 
@@ -35,3 +27,40 @@ X, X, O, , O, , , ,
 X, X, O, X, O, , , , 
 X, X, O, X, O, , O, , 
 O won the game
+
+03/05/2021 18:46:55
+Player 1 = O
+      Player 2 = X
+X, , , , , , , , 
+X, O, , , , , , , 
+X, O, X, , , , , , 
+X, O, X, O, , , , , 
+X, O, X, O, X, , , , 
+X, O, X, O, X, O, , , 
+X, O, X, O, X, O, X, , 
+X won the game
+
+03/05/2021 19:00:48
+Player 1 = X
+      PC = O
+X, , , , , , , , 
+X, , , , O, , , , 
+X, X, , , O, , , , 
+X, X, O, , O, , , , 
+X, X, O, X, O, , , , 
+X, X, O, X, O, , O, , 
+O won the game
+
+03/05/2021 19:01:02
+Player 1 = X
+      Player 2 = O
+X, , , , , , , , 
+X, O, , , , , , , 
+X, O, X, , , , , , 
+X, O, X, O, , , , , 
+X, O, X, O, , X, , , 
+X, O, X, O, O, X, , , 
+X, O, X, O, O, X, X, , 
+X, O, X, O, O, X, X, , O
+X, O, X, O, O, X, X, X, O
+No one won the game
