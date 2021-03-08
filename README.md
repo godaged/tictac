@@ -1,9 +1,10 @@
 # Tic Tac Toe
 ## Description  
-Tic Tac Toe Console Game in Python. Can be played against the PC or another player.
+Tic Tac Toe Console Game in Python, Can be played against the PC or another player.
 This require package os and datetime.
 
-## How to play  
+## How to play 
+Open Console and type tictactoe.py.
 Always 'X' goes first.
 First you need to select to who do you want to play against; another player(0) or PC(1).
 
